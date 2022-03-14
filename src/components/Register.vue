@@ -1,47 +1,71 @@
 <template>
-  <form >
-    <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="name"
-      placeholder="Name"
-      required
-    />
-    <input
-      class="form-input neu-border-inset"
+  <form @submit.prevent="register" class="form neu-border">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <MDBRow class="mb-4">
+      <MDBCol>
+        <MDBInput
+          type="text"
+          label="First name"
+          id="form3FirstName"
+          v-model="form3FirstName"
+        />
+      </MDBCol>
+      <MDBCol>
+        <MDBInput
+          type="text"
+          label="Last name"
+          id="form3LastName"
+          v-model="form3LastName"
+        />
+      </MDBCol>
+    </MDBRow>
+    <!-- Email input -->
+    <MDBInput
       type="email"
-      v-model="email"
-      placeholder="Email"
-      required
+      label="Email address"
+      id="form3Email"
+      v-model="form3Email"
+      wrapperClass="mb-4"
     />
-    <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="phone_number"
-      placeholder="Contact"
-      required
-    />
-    <input
-      class="form-input neu-border-inset"
+    <!-- Password input -->
+    <MDBInput
       type="password"
-      v-model="password"
-      placeholder="Password"
-      required
+      label="Password"
+      id="form3Password"
+      v-model="form3Password"
+      wrapperClass="mb-4"
     />
-    <button type="submit" class="form-btn">Register</button>
-    <!-- <div class="form-social-login">
-      <button class="form-btn neu-border form-social-btn">
-        <i class="fab fa-google"></i>
-      </button>
-      <button class="form-btn neu-border form-social-btn">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-    </div> -->
 
-    <p>
-      Already a member?
-      <router-link to="/Login">Sign in</router-link>
-    </p>
+    <!-- Checkbox -->
+    <MDBCheckbox
+      label="Remember me"
+      id="form3SubscribeCheck"
+      v-model="form3SubscribeCheck"
+      wrapperClass="d-flex justify-content-center mb-4"
+    />
+
+    <!-- Submit button -->
+    <MDBBtn color="primary" block class="mb-4"> Sign up </MDBBtn>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>or sign up with:</p>
+      <MDBBtn color="primary" floating class="mx-1">
+        <MDBIcon iconStyle="fab" icon="facebook-f" />>
+      </MDBBtn>
+
+      <MDBBtn color="primary" floating class="mx-1">
+        <MDBIcon iconStyle="fab" icon="google" />
+      </MDBBtn>
+
+      <MDBBtn color="primary" floating class="mx-1">
+        <MDBIcon iconStyle="fab" icon="twitter" />
+      </MDBBtn>
+
+      <MDBBtn color="primary" floating class="mx-1">
+        <MDBIcon iconStyle="fab" icon="github" />
+      </MDBBtn>
+    </div>
   </form>
 </template>
 <script>
@@ -83,55 +107,8 @@ export default {
 </script>
 <style>
 .neu-border {
-  border-radius: 30px;
+  border-radius: 15px;
   background: #f5f5f5;
   box-shadow: 8px 8px 15px #e4e4e4, -8px -8px 15px #ffffff;
-}
-.neu-border-inset {
-  border-radius: 30px;
-  background: #f5f5f5;
-  box-shadow: inset 8px 8px 15px #e4e4e4, inset -8px -8px 15px #ffffff;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px;
-  gap: 20px;
-  width: 100%;
-  max-width: 600px;
-  margin-inline: auto;
-}
-
-.form-heading {
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.form-input,
-.form-btn {
-  border: none;
-  outline: none;
-  padding: 20px;
-}
-
-.form-btn {
-  cursor: pointer;
-  transition: all 0.1s linear;
-}
-
-.form-btn:hover {
-  transform: scale(1.05);
-}
-
-.form-social-login {
-  display: flex;
-  justify-content: space-between;
-}
-
-.form-social-btn {
-  width: 45%;
-  color: #333;
 }
 </style>

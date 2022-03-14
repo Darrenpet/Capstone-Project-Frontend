@@ -1,52 +1,92 @@
 <template>
-  <nav>
-    <router-link class="but" to="/">HOME</router-link>
-  </nav>
-
-  <br />
-  <br />
-
   <div class="Login">
     <form @submit.prevent="login" class="form neu-border">
-      <h2 class="form-heading"></h2>
-      <input
-        class="form-input neu-border-inset"
+      <!-- Email input -->
+      <MDBInput
         type="email"
-        v-model="email"
-        placeholder="Email"
-        required
+        label="Email address"
+        id="form2Email"
+        v-model="form2Email"
+        wrapperClass="mb-4"
       />
-      <input
-        class="form-input neu-border-inset"
+      <!-- Password input -->
+      <MDBInput
         type="password"
-        v-model="password"
-        placeholder="Password"
-        required
+        label="Password"
+        id="form2Password"
+        v-model="form2Password"
+        wrapperClass="mb-4"
       />
-      <button type="submit" class="form-btn">Login</button>
+      <!-- 2 column grid layout for inline styling -->
+      <MDBRow class="mb-4">
+        <MDBCol class="d-flex justify-content-center">
+          <!-- Checkbox -->
+          <MDBCheckbox
+            label="Remember me"
+            id="form2LoginCheck"
+            v-model="form2LoginCheck"
+            wrapperClass="mb-3 mb-md-0"
+          />
+        </MDBCol>
+        <MDBCol>
+          <!-- Simple link -->
+          <a href="#!">Forgot password?</a>
+        </MDBCol>
+      </MDBRow>
+      <!-- Submit button -->
+      <MDBBtn color="danger" block> Sign in </MDBBtn>
 
-      <!-- <div class="form-social-login">
-      <button class="form-btn neu-border form-social-btn">
-        <i class="fab fa-google"></i>
-      </button>
-      <button class="form-btn neu-border form-social-btn">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-    </div> -->
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>Not a member? <a href="#!">Register</a></p>
+        <p>or sign up with:</p>
+        <MDBBtn color="danger" floating class="mx-1">
+          <MDBIcon iconStyle="fab" icon="facebook-f" />>
+        </MDBBtn>
 
-      <p>
-        Not a member?
-        <router-link to="/Register">Register</router-link>
-      </p>
+        <MDBBtn color="danger" floating class="mx-1">
+          <MDBIcon iconStyle="fab" icon="google" />
+        </MDBBtn>
+
+        <MDBBtn color="danger" floating class="mx-1">
+          <MDBIcon iconStyle="fab" icon="twitter" />
+        </MDBBtn>
+
+        <MDBBtn color="danger" floating class="mx-1">
+          <MDBIcon iconStyle="fab" icon="github" />
+        </MDBBtn>
+      </div>
     </form>
   </div>
 </template>
 <script>
+import {
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBIcon,
+} from "mdb-vue-ui-kit";
+import { ref } from "vue";
 export default {
-  data() {
+  components: {
+    MDBRow,
+    MDBCol,
+    MDBInput,
+    MDBCheckbox,
+    MDBBtn,
+    MDBIcon,
+  },
+  setup() {
+    const form2Email = ref("");
+    const form2Password = ref("");
+    const form2LoginCheck = ref(true);
+
     return {
-      email: "",
-      password: "",
+      form2Email,
+      form2Password,
+      form2LoginCheck,
     };
   },
   methods: {
@@ -76,74 +116,8 @@ export default {
 </script>
 <style>
 .neu-border {
-  border-radius: 30px;
+  border-radius: 15px;
   background: #f5f5f5;
   box-shadow: 8px 8px 15px whitesmoke, -8px -8px 15px whitesmoke;
-}
-.neu-border-inset {
-  border-radius: 30px;
-  background: #f5f5f5;
-  box-shadow: inset 8px 8px 15px whitesmoke, inset -8px -8px 15px whitesmoke;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px;
-  margin-top: 80px !important;
-  gap: 20px;
-  width: 100%;
-  margin-inline: auto;
-  max-width: 600px;
-  font-size: 25px;
-}
-
-.form-heading {
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.form-input,
-.form-btn {
-  border: none;
-  outline: none;
-  padding: 20px;
-  font-size: 25px;
-  border-radius: 30px;
-  box-shadow: inset 8px 8px 15px #e4e4e4, inset -8px -8px 15px #ffffff;
-}
-
-.form-btn {
-  cursor: pointer;
-  transition: all 0.1s linear;
-}
-
-.form-btn:hover {
-  transform: scale(1.05);
-}
-
-.form-social-login {
-  display: flex;
-  justify-content: space-between;
-}
-
-.form-social-btn {
-  width: 45%;
-  color: #333;
-}
-
-.but {
-  font-size: 35px !important;
-  font-weight: bold;
-  color: black;
-}
-
-.form-btn {
-  background-color: #ff0000 !important;
-}
-
-.but:hover {
-  color: yellow !important;
 }
 </style>
