@@ -138,6 +138,6 @@ export default {
 }
 
 .fas:hover {
-  color: red;
+  color: rgb(255, 255, 255);
 }
 </style>

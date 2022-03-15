@@ -1,5 +1,5 @@
 <template>
-  <div class="Login">
+  <div class="container mt-5">
     <form @submit.prevent="login" class="form neu-border">
       <!-- Email input -->
       <MDBInput
@@ -37,24 +37,11 @@
       <MDBBtn color="danger" block> Sign in </MDBBtn>
 
       <!-- Register buttons -->
-      <div class="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-        <p>or sign up with:</p>
-        <MDBBtn color="danger" floating class="mx-1">
-          <MDBIcon iconStyle="fab" icon="facebook-f" />>
-        </MDBBtn>
-
-        <MDBBtn color="danger" floating class="mx-1">
-          <MDBIcon iconStyle="fab" icon="google" />
-        </MDBBtn>
-
-        <MDBBtn color="danger" floating class="mx-1">
-          <MDBIcon iconStyle="fab" icon="twitter" />
-        </MDBBtn>
-
-        <MDBBtn color="danger" floating class="mx-1">
-          <MDBIcon iconStyle="fab" icon="github" />
-        </MDBBtn>
+      <div class="text-center my-3">
+        <p>
+          Not a member?
+          <router-link to="/Register">Register</router-link>
+        </p>
       </div>
     </form>
   </div>
@@ -114,10 +101,4 @@ export default {
   },
 };
 </script>
-<style>
-.neu-border {
-  border-radius: 15px;
-  background: #f5f5f5;
-  box-shadow: 8px 8px 15px whitesmoke, -8px -8px 15px whitesmoke;
-}
-</style>
+<style></style>

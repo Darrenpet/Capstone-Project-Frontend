@@ -1,81 +1,80 @@
 <template>
-  <form @submit.prevent="register" class="form neu-border">
-    <!-- 2 column grid layout with text inputs for the first and last names -->
-    <MDBRow class="mb-4">
-      <MDBCol>
-        <MDBInput
-          type="text"
-          label="First name"
-          id="form3FirstName"
-          v-model="form3FirstName"
-        />
-      </MDBCol>
-      <MDBCol>
-        <MDBInput
-          type="text"
-          label="Last name"
-          id="form3LastName"
-          v-model="form3LastName"
-        />
-      </MDBCol>
-    </MDBRow>
-    <!-- Email input -->
-    <MDBInput
-      type="email"
-      label="Email address"
-      id="form3Email"
-      v-model="form3Email"
-      wrapperClass="mb-4"
-    />
-    <!-- Password input -->
-    <MDBInput
-      type="password"
-      label="Password"
-      id="form3Password"
-      v-model="form3Password"
-      wrapperClass="mb-4"
-    />
+  <div class="container mt-5">
+    <form @submit.prevent="register" class="form neu-border">
+      <!-- 2 column grid layout with text inputs for the first and last names -->
+      <MDBRow class="mb-4">
+        <MDBCol>
+          <MDBInput type="text" label="Name" id="name" v-model="name" />
+        </MDBCol>
+        <MDBCol>
+          <MDBInput
+            type="text"
+            label="Contact Number"
+            id="phone_number"
+            v-model="phone_number"
+          />
+        </MDBCol>
+      </MDBRow>
+      <!-- Email input -->
+      <MDBInput
+        type="email"
+        label="Email address"
+        id="email"
+        v-model="email"
+        wrapperClass="mb-4"
+      />
+      <!-- Password input -->
+      <MDBInput
+        type="password"
+        label="Password"
+        id="password"
+        v-model="password"
+        wrapperClass="mb-4"
+      />
 
-    <!-- Checkbox -->
-    <MDBCheckbox
-      label="Remember me"
-      id="form3SubscribeCheck"
-      v-model="form3SubscribeCheck"
-      wrapperClass="d-flex justify-content-center mb-4"
-    />
+      <!-- Submit button -->
+      <MDBBtn color="danger" block class="my-2"> Sign up </MDBBtn>
 
-    <!-- Submit button -->
-    <MDBBtn color="primary" block class="mb-4"> Sign up </MDBBtn>
-
-    <!-- Register buttons -->
-    <div class="text-center">
-      <p>or sign up with:</p>
-      <MDBBtn color="primary" floating class="mx-1">
-        <MDBIcon iconStyle="fab" icon="facebook-f" />>
-      </MDBBtn>
-
-      <MDBBtn color="primary" floating class="mx-1">
-        <MDBIcon iconStyle="fab" icon="google" />
-      </MDBBtn>
-
-      <MDBBtn color="primary" floating class="mx-1">
-        <MDBIcon iconStyle="fab" icon="twitter" />
-      </MDBBtn>
-
-      <MDBBtn color="primary" floating class="mx-1">
-        <MDBIcon iconStyle="fab" icon="github" />
-      </MDBBtn>
-    </div>
-  </form>
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>
+          Already a Member?
+          <router-link class="mb-2" to="/Login">login</router-link>
+        </p>
+      </div>
+    </form>
+  </div>
 </template>
 <script>
+import {
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBIcon,
+} from "mdb-vue-ui-kit";
+import { ref } from "vue";
 export default {
-  data() {
+  components: {
+    MDBRow,
+    MDBCol,
+    MDBInput,
+    MDBCheckbox,
+    MDBBtn,
+    MDBIcon,
+  },
+  setup() {
+    const name = ref("");
+    const phone_number = ref("");
+    const email = ref("");
+    const password = ref("");
+
     return {
-      name: "",
-      email: "",
-      phone_number: "",
-      password: "",
+      name,
+      phone_number,
+      email,
+      password,
     };
   },
   methods: {
@@ -107,8 +106,8 @@ export default {
 </script>
 <style>
 .neu-border {
-  border-radius: 15px;
-  background: #f5f5f5;
-  box-shadow: 8px 8px 15px #e4e4e4, -8px -8px 15px #ffffff;
+  border-radius: 5px;
+  border-block-color: red;
+  background: #252525;
 }
 </style>

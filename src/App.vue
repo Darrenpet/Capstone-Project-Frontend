@@ -20,7 +20,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #502c2c;
+  color: #ff0000;
   background-color: black;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -36,6 +36,11 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ff0000;
+}
+html {
+  background-color: black;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 </style>
