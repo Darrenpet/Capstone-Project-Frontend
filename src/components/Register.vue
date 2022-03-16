@@ -4,10 +4,17 @@
       <!-- 2 column grid layout with text inputs for the first and last names -->
       <MDBRow class="mb-4">
         <MDBCol>
-          <MDBInput type="text" label="Name" id="name" v-model="name" />
+          <MDBInput
+            class="text-white"
+            type="text"
+            label="Full Name"
+            id="name"
+            v-model="name"
+          />
         </MDBCol>
         <MDBCol>
           <MDBInput
+            class="text-white"
             type="text"
             label="Contact Number"
             id="phone_number"
@@ -17,14 +24,16 @@
       </MDBRow>
       <!-- Email input -->
       <MDBInput
+        class="text-white"
         type="email"
-        label="Email address"
+        label="Email Address"
         id="email"
         v-model="email"
         wrapperClass="mb-4"
       />
       <!-- Password input -->
       <MDBInput
+        class="text-white"
         type="password"
         label="Password"
         id="password"
@@ -33,13 +42,13 @@
       />
 
       <!-- Submit button -->
-      <MDBBtn color="danger" block class="my-2"> Sign up </MDBBtn>
+      <MDBBtn color="danger" type="submit" block class="my-2"> Sign up </MDBBtn>
 
       <!-- Register buttons -->
       <div class="text-center">
         <p>
           Already a Member?
-          <router-link class="mb-2" to="/Login">login</router-link>
+          <router-link class="mb-2" :to="{ name: 'LoginU' }">login</router-link>
         </p>
       </div>
     </form>
@@ -95,7 +104,7 @@ export default {
         .then((json) => {
           alert("User registered");
           localStorage.setItem("jwt", json.jwt);
-          this.$router.push({ name: "Login" });
+          this.$router.push({ name: "LoginU" });
         })
         .catch((err) => {
           alert(err);
@@ -109,5 +118,9 @@ export default {
   border-radius: 5px;
   border-block-color: red;
   background: #252525;
+}
+.form {
+  max-width: 600px;
+  max-height: 600px;
 }
 </style>

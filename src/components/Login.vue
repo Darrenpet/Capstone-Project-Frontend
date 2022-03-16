@@ -3,18 +3,20 @@
     <form @submit.prevent="login" class="form neu-border">
       <!-- Email input -->
       <MDBInput
+        class="text-white"
         type="email"
-        label="Email address"
+        label="Email Address"
         id="form2Email"
-        v-model="form2Email"
+        v-model="email"
         wrapperClass="mb-4"
       />
       <!-- Password input -->
       <MDBInput
+        class="text-white"
         type="password"
         label="Password"
         id="form2Password"
-        v-model="form2Password"
+        v-model="password"
         wrapperClass="mb-4"
       />
       <!-- 2 column grid layout for inline styling -->
@@ -34,13 +36,15 @@
         </MDBCol>
       </MDBRow>
       <!-- Submit button -->
-      <MDBBtn color="danger" block> Sign in </MDBBtn>
+      <MDBBtn color="danger" type="submit" block> Sign in </MDBBtn>
 
       <!-- Register buttons -->
       <div class="text-center my-3">
         <p>
           Not a member?
-          <router-link to="/Register">Register</router-link>
+          <router-link class="mb-2" :to="{ name: 'RegisterU' }"
+            >Register</router-link
+          >
         </p>
       </div>
     </form>
@@ -64,6 +68,12 @@ export default {
     MDBCheckbox,
     MDBBtn,
     MDBIcon,
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
   },
   setup() {
     const form2Email = ref("");
