@@ -1,91 +1,70 @@
 <template>
-  <div class="container mt-5">
-    <form @submit.prevent="login" class="form neu-border">
-      <!-- Email input -->
-      <MDBInput
-        class="text-white"
-        type="email"
-        label="Email Address"
-        id="form2Email"
-        v-model="email"
-        wrapperClass="mb-4"
-      />
-      <!-- Password input -->
-      <MDBInput
-        class="text-white"
-        type="password"
-        label="Password"
-        id="form2Password"
-        v-model="password"
-        wrapperClass="mb-4"
-      />
-      <!-- 2 column grid layout for inline styling -->
-      <MDBRow class="mb-4">
-        <MDBCol class="d-flex justify-content-center">
-          <!-- Checkbox -->
-          <MDBCheckbox
-            label="Remember me"
-            id="form2LoginCheck"
-            v-model="form2LoginCheck"
-            wrapperClass="mb-3 mb-md-0"
-          />
-        </MDBCol>
-        <MDBCol>
-          <!-- Simple link -->
-          <a href="#!">Forgot password?</a>
-        </MDBCol>
-      </MDBRow>
-      <!-- Submit button -->
-      <MDBBtn color="danger" type="submit" block> Sign in </MDBBtn>
+  <div class="container">
+    <div class="content">
+      <div
+        class="login-container animated fadeInDown"
+        style="animation-delay: 0.3s"
+      >
+        <!--   Login   -->
+        <div class="login justify-content-center" id="login-form">
+          <h1 class="form-title">
+            <i class="fas fa-user" style="color: #0000ff"></i> <br />
+            LOGIN
+            <hr />
+          </h1>
 
-      <!-- Register buttons -->
-      <div class="text-center my-3">
-        <p>
-          Not a member?
-          <router-link class="mb-2" :to="{ name: 'RegisterU' }"
-            >Register</router-link
+          <div
+            class="form-container animated fadeIn"
+            style="animation-delay: 0.7s"
           >
-        </p>
+            <form @submit.prevent="login()">
+              <label for=""><i class="fas fa-at"></i> Email </label>
+              <input
+                type="email"
+                name="email"
+                v-model="email"
+                placeholder="E-mail"
+              />
+
+              <label for=""><i class="fab fa-slack-hash"></i> Password </label>
+              <input
+                type="password"
+                name="password"
+                v-model="password"
+                placeholder="Password"
+              />
+
+              <div class="submit-buttons">
+                <input type="submit" value="Login" :to="{ name: 'Products' }" />
+                <input
+                  type="button"
+                  value="Sign Up"
+                  :to="{ name: 'RegisterU' }"
+                  class="btn-register"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--   Login   -->
+        <div
+          class="login animated fadeIn"
+          style="animation-delay: 0.7s; animation-duration: 4s"
+          id="login-bg"
+        ></div>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 <script>
-import {
-  MDBRow,
-  MDBCol,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon,
-} from "mdb-vue-ui-kit";
-import { ref } from "vue";
 export default {
-  components: {
-    MDBRow,
-    MDBCol,
-    MDBInput,
-    MDBCheckbox,
-    MDBBtn,
-    MDBIcon,
-  },
   data() {
     return {
       email: "",
       password: "",
     };
   },
-  setup() {
-    const form2Email = ref("");
-    const form2Password = ref("");
-    const form2LoginCheck = ref(true);
 
-    return {
-      form2Email,
-      form2Password,
-      form2LoginCheck,
-    };
-  },
   methods: {
     login() {
       fetch("https://capstone-bkend.herokuapp.com/users/", {
@@ -111,4 +90,142 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-container {
+  background: white;
+  position: relative;
+  border-radius: 5px;
+  display: flex;
+  width: 70vw;
+  height: 70vh;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.07);
+  transition: 0.4s;
+}
+
+.login {
+  transition: 0.4s;
+  font-family: Comfortaa;
+}
+
+.login#login-form {
+  width: 50%;
+  display: block;
+  padding: 15px;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+.login#login-bg {
+  width: 50%;
+  display: inline-flex;
+  background: url(https://assets.gqindia.com/photos/5cdc159b700a77d5e9aa0056/4:3/w_1440,h_1080,c_limit/Best-smartphones1.jpg);
+  background-size: cover;
+  background-position: center center;
+  float: right;
+  border-radius: 0 5px 5px 0;
+}
+
+.form-title {
+  position: absolute;
+  top: 11%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #dedede;
+  font-size: 2.2em;
+  font-family: Spartan;
+  line-height: 1.4;
+  margin-top: -24px;
+}
+
+.form-title hr {
+  width: 75%;
+  border: 2px solid #dedede1f;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.form-container {
+  padding: 25px 10px;
+  border-radius: 5px;
+  width: 80%;
+  text-align: left;
+  margin-top: 70px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+label {
+  font-size: 0.7em;
+  color: #7392ff;
+  margin: 0px 0 !important;
+  margin-left: 4px !important;
+}
+
+input {
+  background: #f8fafc;
+  border: 0;
+  width: 100%;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px !important;
+  outline: 0;
+  transition: 0.4s;
+}
+
+input::placeholder {
+  opacity: 0.4;
+}
+
+.submit-buttons {
+  display: flex;
+}
+
+.submit-buttons input {
+  width: 50%;
+  text-align: center;
+  color: white;
+  transition: 0.2s;
+}
+
+.submit-buttons input:hover {
+  opacity: 0.7;
+}
+
+.submit-buttons input:nth-of-type(1) {
+  border-radius: 5px 0 0 5px;
+  background: #54a0ff;
+}
+
+.submit-buttons input:nth-of-type(2) {
+  border-radius: 0 5px 5px 0;
+  background: #c8d6e5;
+}
+
+@media (max-width: 933px) {
+  .login#login-bg {
+    width: 0;
+  }
+
+  .login#login-form,
+  .register {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+</style>
