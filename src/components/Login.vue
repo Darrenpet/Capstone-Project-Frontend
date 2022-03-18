@@ -127,7 +127,7 @@ export default {
 .login#login-bg {
   width: 50%;
   display: inline-flex;
-  background: url(https://assets.gqindia.com/photos/5cdc159b700a77d5e9aa0056/4:3/w_1440,h_1080,c_limit/Best-smartphones1.jpg);
+  background: url(https://fscl01.fonpit.de/userfiles/7640001/image/best-high-end-smartphones/AndroidPIT-Best-High-End-Smartphones-Hero-2.jpg);
   background-size: cover;
   background-position: center center;
   float: right;
@@ -140,7 +140,7 @@ export default {
   left: 0;
   right: 0;
   text-align: center;
-  color: #dedede;
+  color: #000000;
   font-size: 2.2em;
   font-family: Spartan;
   line-height: 1.4;
@@ -168,7 +168,7 @@ export default {
 
 label {
   font-size: 0.7em;
-  color: #7392ff;
+  color: #ff0000;
   margin: 0px 0 !important;
   margin-left: 4px !important;
 }
@@ -196,7 +196,7 @@ input::placeholder {
 .submit-buttons input {
   width: 50%;
   text-align: center;
-  color: white;
+  color: rgb(0, 0, 0);
   transition: 0.2s;
 }
 

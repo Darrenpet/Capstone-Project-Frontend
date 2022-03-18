@@ -171,7 +171,7 @@ export default {
   left: 0;
   right: 0;
   text-align: center;
-  color: #dedede;
+  color: #000000;
   font-size: 2.2em;
   font-family: Spartan;
   line-height: 1.4;
@@ -203,7 +203,7 @@ export default {
 
 label {
   font-size: 0.7em;
-  color: #7392ff;
+  color: #ff0000;
   margin: 0px 0 !important;
   margin-left: 4px !important;
 }
@@ -231,7 +231,7 @@ input::placeholder {
 .submit-buttons input {
   width: 50%;
   text-align: center;
-  color: white;
+  color: rgb(0, 0, 0);
   transition: 0.2s;
 }
 
