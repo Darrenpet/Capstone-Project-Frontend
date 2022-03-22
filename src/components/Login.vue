@@ -77,7 +77,7 @@ export default {
           "Content-type": "application/json; charset=UTF-8",
         },
       })
-        .then((response) => response.json())
+        .then((res) => res.json())
         .then((json) => {
           localStorage.setItem("jwt", json.jwt);
           alert("User logged in");
