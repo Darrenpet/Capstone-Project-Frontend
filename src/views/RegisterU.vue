@@ -1,17 +1,17 @@
 <template>
   <Navbar />
-  <Login />
+  <Register />
   <Footer />
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import Login from "@/components/Login.vue";
+import Register from "@/components/Register.vue";
 
 export default {
   name: "App",
-  components: { Login, Navbar, Footer },
+  components: { Register, Navbar, Footer },
 };
 </script>
 

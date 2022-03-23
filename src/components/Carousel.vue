@@ -48,13 +48,13 @@ export default {
 
 <style>
 .carousel {
-  max-height: 400px;
-  max-width: 400px;
+  max-height: 300px;
+  max-width: 300px;
   display: inline-block;
 }
 
-.products {
+/* .products {
   display: inline-block;
   justify-content: center;
-}
+} */
 </style>
