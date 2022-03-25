@@ -79,6 +79,14 @@ export default {
       })
         .then((res) => res.json())
         .then((json) => {
+          // let isAdmin = json.isAdmin;
+          // if (isAdmin == true) {
+          //   this.$router.push({ name: "Dashboard" });
+          // }
+          // if (isAdmin == false) {
+          //   alert("Not an Admin");
+          //   this.$router.push({ name: "ULogin" });
+          // }
           localStorage.setItem("jwt", json.jwt);
           alert("User logged in");
           this.$router.push({ name: "Products" });

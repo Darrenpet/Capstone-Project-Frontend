@@ -74,6 +74,238 @@
     </ul>
   </nav>
 
+  <!-- Button trigger modal -->
+  <MDBBtn
+    color="danger"
+    aria-controls="exampleModal"
+    @click="exampleModal = true"
+  >
+    Create Product
+  </MDBBtn>
+  <MDBModal
+    id="exampleModal"
+    tabindex="-1"
+    labelledby="exampleModalLabel"
+    v-model="exampleModal"
+  >
+    <MDBModalHeader>
+      <MDBModalTitle id="exampleModalLabel"> Create Product </MDBModalTitle>
+    </MDBModalHeader>
+    <MDBModalBody>
+      <div class="mb-3">
+        <label for="addTitle" class="form-label">Title</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addTitle"
+          id="addTitle"
+          v-model="title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Category</label>
+        <select
+          class="form-select"
+          name="addCategory"
+          id="addCategory"
+          v-model="category"
+        >
+          <option value="Samsung">Samsung</option>
+          <option value="Huawei">Huawei</option>
+          <option value="Apple">Apple</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="addPrice" class="form-label">Price</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addPrice"
+          id="addPrice"
+          v-model="price"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="addImg" class="form-label">Image Front URL</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addImg"
+          id="addImg"
+          v-model="img_front"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="addImg" class="form-label">Image Back URL</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addImg"
+          id="addImg"
+          v-model="img_back"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="addDescription" class="form-label">Description</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addDescription"
+          id="addDescription"
+          v-model="description"
+        />
+      </div>
+    </MDBModalBody>
+    <MDBModalFooter>
+      <MDBBtn color="secondary" @click="exampleModal = false">Close</MDBBtn>
+      <MDBBtn color="primary" @click="createProduct()">Create Product</MDBBtn>
+    </MDBModalFooter>
+  </MDBModal>
+
+  <!-- Button trigger modal -->
+  <MDBModal
+    id="exampleModal2"
+    tabindex="-1"
+    labelledby="exampleModalLabel2"
+    v-model="exampleModal2"
+  >
+    <MDBModalHeader>
+      <MDBModalTitle id="exampleModalLabel2"> Update Product </MDBModalTitle>
+    </MDBModalHeader>
+    <MDBModalBody>
+      <div class="mb-3">
+        <label for="addTitle" class="form-label">Title</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addTitle"
+          id="addTitle"
+          v-model="title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Category</label>
+        <select
+          class="form-select"
+          name="addCategory"
+          id="addCategory"
+          v-model="category"
+        >
+          <option value="Samsung">Samsung</option>
+          <option value="Huawei">Huawei</option>
+          <option value="Apple">Apple</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="addPrice" class="form-label">Price</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addPrice"
+          id="addPrice"
+          v-model="price"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="addImg" class="form-label">Image Front URL</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addImg"
+          id="addImg"
+          v-model="img_front"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="addImg" class="form-label">Image Back URL</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addImg"
+          id="addImg"
+          v-model="img_back"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="addDescription" class="form-label">Description</label>
+        <input
+          class="form-control"
+          type="text"
+          name="addDescription"
+          id="addDescription"
+          v-model="description"
+        />
+      </div>
+    </MDBModalBody>
+    <MDBModalFooter>
+      <MDBBtn color="secondary" @click="exampleModal2 = false">Close</MDBBtn>
+      <MDBBtn color="primary" @click="updateProduct()">Update Product</MDBBtn>
+    </MDBModalFooter>
+  </MDBModal>
+
+  <div class="container">
+    <h1 class="text-center display-6 mb-5 fw-bold subtitlee">Products</h1>
+    <div
+      id="carouselExampleControlsNoTouching"
+      class="carousel testi slide text-black col-lg-10"
+      data-bs-touch="false"
+      data-bs-interval="false"
+    >
+      <div class="row text-center">
+        <div
+          class="carousel-inner text-dark border shadow-5-strong"
+          v-for="(product, index) in products"
+          :key="index"
+        >
+          <div
+            class="carousel-item mt-5 card"
+            :class="{ active: index == isActive }"
+          >
+            <img
+              :src="product.img_front"
+              class="d-block img-thumbnail"
+              alt="..."
+            />
+            <img
+              :src="product.img_back"
+              class="img-thumbnail img-top card-img"
+              alt="..."
+            />
+
+            <div class="text-center mt-5">
+              <p class="h5 names text-center mt-3">{{ product.title }}</p>
+              <b class="category">{{ product.category }}</b>
+              <div class=" ">
+                <p class="text-center mt-3">{{ product.description }}</p>
+                <p class="text-center mt-3">{{ product.price }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          @click="changePrevProducts"
+          data-bs-target="#carouselExampleControlsNoTouching"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          @click="changeNextProducts"
+          data-bs-target="#carouselExampleControlsNoTouching"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div v-if="products.length" class="row">
       <div
@@ -99,18 +331,20 @@
             <MDBCardText> {{ product.category }} </MDBCardText>
             <MDBCardText> {{ product.description }} </MDBCardText>
             <MDBCardText> R{{ product.price }} </MDBCardText>
-            <router-link
-              :to="{
-                name: 'ProductDetails',
-                params: {
-                  id: product._id,
-                },
-              }"
-              ><MDBBtn tag="a" href="#!" color="info"
-                >View Product</MDBBtn
-              ></router-link
+            <MDBBtn
+              color="info"
+              aria-controls="exampleModal2"
+              @click="exampleModal2 = true"
             >
-            <MDBBtn tag="a" href="#!" color="success">Button</MDBBtn>
+              Update Product
+            </MDBBtn>
+            <MDBBtn
+              tag="a"
+              href="#!"
+              color="danger"
+              @click.prevent="deleteProduct(product._id)"
+              >Delete</MDBBtn
+            >
           </MDBCardBody>
         </MDBCard>
       </div>
@@ -184,6 +418,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import {
   MDBCard,
   MDBCardBody,
@@ -194,7 +429,13 @@ import {
   mdbRipple,
   MDBCardGroup,
   MDBCardGroupItem,
+  MDBModal,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
 } from "mdb-vue-ui-kit";
+import { ref } from "vue";
 export default {
   components: {
     MDBCard,
@@ -205,6 +446,11 @@ export default {
     MDBBtn,
     MDBCardGroup,
     MDBCardGroupItem,
+    MDBModal,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
   },
 
   directives: {
@@ -214,11 +460,123 @@ export default {
     return {
       products: [],
       users: [],
-      search: "",
-      category: "",
-      price: "",
       title: "",
+      category: "",
+      description: "",
+      img_front: "",
+      img_back: "",
+      price: "",
+      isActive: 0,
     };
+  },
+
+  setup() {
+    const exampleModal = ref(false);
+    const exampleModal2 = ref(false);
+    return {
+      exampleModal,
+      exampleModal2,
+    };
+  },
+
+  methods: {
+    changeNextProducts() {
+      if (this.isActive < 19) this.isActive++;
+      else this.isActive = 0;
+    },
+    changePrevProducts() {
+      if (this.isActive < 20) {
+        this.isActive--;
+      }
+      if (this.isActive < 0) {
+        this.isActive = 19;
+      }
+    },
+
+    // Create Product
+    createProduct() {
+      if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "Login" });
+      }
+      fetch("https://capstone-bkend.herokuapp.com/products/", {
+        method: "POST",
+        body: JSON.stringify({
+          title: this.title,
+          description: this.description,
+          category: this.category,
+          price: this.price,
+          img_front: this.img_front,
+          img_back: this.img_back,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("Product Created");
+          // this.$router.push({ name: "Products" });
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    },
+
+    // Update Product
+    updateProduct() {
+      if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "Login" });
+      }
+      fetch("https://capstone-bkend.herokuapp.com/products/" + this._id, {
+        method: "PUT",
+        body: JSON.stringify({
+          title: this.title,
+          description: this.description,
+          category: this.category,
+          price: this.price,
+          img_front: this.img_front,
+          img_back: this.img_back,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("Product Updated");
+          // this.$router.push({ name: "Products" });
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    },
+
+    deleteProduct(id) {
+      const config = {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      };
+      let apiURL = `https://capstone-bkend.herokuapp.com/products//${id}`;
+
+      let indexOfArrayItem = this.products.findIndex((i) => i._id === id);
+
+      if (window.confirm("Do you really want to delete?")) {
+        axios
+          .delete(apiURL, config)
+          .then(() => {
+            this.products.splice(indexOfArrayItem, 1);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    },
   },
 
   mounted() {
@@ -246,7 +604,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
@@ -378,8 +736,8 @@ nav.main-menu li.active > a,
 .area {
   float: left;
   background: #e2e2e2;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
 }
 
 @font-face {
@@ -389,5 +747,66 @@ nav.main-menu li.active > a,
   src: local("Titillium WebLight"), local("TitilliumWeb-Light"),
     url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
       format("woff");
+}
+
+.card .img-top {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50px;
+  z-index: 99;
+}
+
+.card:hover .img-top {
+  display: inline;
+  border-radius: 50%;
+  height: 200px;
+  margin: auto;
+  width: 200px;
+  object-fit: cover;
+}
+
+.d-block {
+  border-radius: 50%;
+  height: 200px;
+  margin: auto;
+  width: 200px;
+  object-fit: cover;
+}
+
+.carousel-item {
+  background-color: rgb(226, 226, 226);
+  border-radius: 15px;
+  height: 500px;
+}
+.carousel-control-prev-icon {
+  background-color: rgb(255, 0, 0);
+  margin-bottom: 230px;
+}
+.carousel-control-prev {
+  opacity: 0.3 !important;
+}
+.carousel-control-next {
+  opacity: 0.3 !important;
+}
+.carousel-control-next-icon {
+  background-color: rgb(255, 0, 0);
+  margin-bottom: 230px;
+}
+.category {
+  color: rgb(255, 0, 0);
+  font-size: x-large;
+}
+.names {
+  font-size: xx-large;
+}
+.carousel-control-next-icon:hover {
+  background-color: white;
+}
+.carousel-control-prev-icon:hover {
+  background-color: white;
+}
+.description {
+  width: 700px !important;
 }
 </style>

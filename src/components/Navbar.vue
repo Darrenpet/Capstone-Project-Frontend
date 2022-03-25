@@ -47,6 +47,20 @@
 
             <MDBNavbarItem>
               <router-link
+                @click="logout()"
+                class="nav-link"
+                href="#!"
+                :to="{ name: 'LoginU' }"
+              >
+                <div>
+                  <i class="fas fa-laptop"></i>
+                </div>
+                Logout
+              </router-link>
+            </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <router-link
                 class="nav-link"
                 href="#!"
                 :to="{ name: 'RegisterU' }"
@@ -81,7 +95,7 @@
     </MDBCollapse>
   </MDBNavbar>
 </template>
-
+<button class="btn btn-danger" @click="logout()">Logout</button>
 <script>
 import {
   MDBBtn,
@@ -118,6 +132,12 @@ export default {
       collapse1,
       dropdown1,
     };
+  },
+  computed: {
+    logout() {
+      localStorage.clear();
+      alert("User logged out");
+    },
   },
 };
 </script>

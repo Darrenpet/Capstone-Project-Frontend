@@ -99,7 +99,7 @@ export default {
       })
         .then((response) => response.json())
         .then((json) => {
-          alert("User registered");
+          alert("User Registered");
           localStorage.setItem("jwt", json.jwt);
           this.$router.push({ name: "LoginU" });
         })
