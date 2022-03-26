@@ -1,24 +1,51 @@
 <template>
-  <Navbar />
-  <div class="container my-5">
-    <div v-if="product" class="row">
-      <div class="card" style="width: 18rem">
-        <img :src="product.img_front" class="card-img" alt="..." />
-        <img :src="product.img_back" class="img-top card-img" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">{{ product.title }}</h5>
-          <p class="card-text">
-            {{ product.description }}
-          </p>
+  <h1 class="fw-bold my-5">Product Details</h1>
+  <MDBBtn
+    color="black"
+    onclick="history.back(-1)"
+    class="link-button link-back-button"
+  >
+    Go Back
+  </MDBBtn>
+  <div class="container animate__animated animate__rubberBand">
+    <div v-if="product" class="row d-flex justify-content-center">
+      <div class="card-item text-dark border shadow-5-strong mt-5 card">
+        <img :src="product.img_front" class="d-block img-thumbnail" alt="..." />
+        <img
+          :src="product.img_back"
+          class="img-thumbnail img-top card-img"
+          alt="..."
+        />
+
+        <div class="text-center">
+          <p class="h5 names text-center">{{ product.title }}</p>
+          <b class="category">{{ product.category }}</b>
+          <div class=" ">
+            <p class="text-center mt-3">{{ product.description }}</p>
+            <p class="text-center mt-3">R{{ product.price }}</p>
+          </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{ product.description }}</li>
-          <li class="list-group-item">{{ product.category }}</li>
-          <li class="list-group-item">R{{ product.price }}</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+        <div class="my-2">
+          <MDBBtn
+            color="black"
+            aria-controls="exampleModal2"
+            @click="exampleModal2 = true"
+          >
+            Update/Edit
+          </MDBBtn>
+          <router-link
+            :to="{
+              name: 'Dashboard',
+            }"
+          >
+            <MDBBtn
+              tag="a"
+              href="#!"
+              color="danger"
+              @click.prevent="deleteProduct(product._id)"
+              >Delete</MDBBtn
+            >
+          </router-link>
         </div>
       </div>
     </div>
@@ -37,22 +64,37 @@
       </div>
     </div>
   </div>
-  <Footer />
 </template>
 
-<script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
+<script scoped>
+import {
+  MDBModal,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+  MDBBtn,
+} from "mdb-vue-ui-kit";
+import { ref } from "vue";
 export default {
-  components: {
-    Navbar,
-    Footer,
-  },
   props: ["id"],
+  components: {
+    MDBModal,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
+    MDBBtn,
+  },
   data() {
     return {
       product: null,
-      search: "",
+      title: "",
+      category: "",
+      description: "",
+      img_front: "",
+      img_back: "",
+      price: "",
     };
   },
   mounted() {
@@ -70,6 +112,15 @@ export default {
         alert(console.log(err));
       });
   },
+
+  setup() {
+    const exampleModal2 = ref(false);
+    return {
+      exampleModal2,
+    };
+  },
+
+  methods: {},
 };
 </script>
 
@@ -77,18 +128,43 @@ export default {
 .card .img-top {
   display: none;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 30.5px;
+  left: 74px;
   z-index: 99;
 }
 
 .card:hover .img-top {
   display: inline;
+  border-radius: 50%;
+  height: 200px;
+  margin: auto;
+  width: 200px;
+  object-fit: cover;
 }
 
-.card {
-  width: 300px;
-  height: 525px;
+.d-block {
+  border-radius: 50%;
+  height: 200px;
+  margin: auto;
+  width: 200px;
+  object-fit: cover;
+}
+
+.card-item {
+  background-color: rgb(226, 226, 226);
+  border-radius: 15px;
+  min-height: 500px;
+  max-width: 350px;
+}
+.category {
+  color: rgb(255, 0, 0);
+  font-size: x-large;
+}
+.names {
+  font-size: xx-large;
+}
+.description {
+  width: 700px !important;
 }
 
 .fingerprint-spinner,

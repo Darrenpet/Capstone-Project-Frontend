@@ -3,7 +3,9 @@ import Home from "@/views/Home.vue";
 import Products from "@/views/Products/Products.vue";
 import ProductDetails from "@/views/Products/ProductDetails.vue";
 import Cart from "@/views/Cart.vue";
-import Dashboard from "@/views/Dashboard.vue";
+import Dashboard from "@/views/Admin/Dashboard.vue";
+import OneProduct from "@/views/Admin/OneProduct.vue";
+import UserDetails from "@/views/Admin/UserDetails.vue";
 import LoginU from "@/views/LoginU.vue";
 import RegisterU from "@/views/RegisterU.vue";
 import Contact from "@/views/Contact.vue";
@@ -33,9 +35,21 @@ const routes = [
     component: Cart,
   },
   {
-    path: "/dashboard",
+    path: "/Admin/dashboard",
     name: "Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/Admin/:id",
+    name: "OneProduct",
+    component: OneProduct,
+    props: true,
+  },
+  {
+    path: "/Admin/:id",
+    name: "UserDetails",
+    component: UserDetails,
+    props: true,
   },
   {
     path: "/login",
