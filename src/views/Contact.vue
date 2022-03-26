@@ -40,7 +40,7 @@
                 class="textarea"
                 type="textarea"
                 name="message"
-                v-model="message"
+                v-model="textarea"
                 placeholder="Message"
               />
 

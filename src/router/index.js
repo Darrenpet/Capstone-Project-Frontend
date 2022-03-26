@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/views/Home.vue";
-import Products from "@/views/Products/Products.vue";
-import ProductDetails from "@/views/Products/ProductDetails.vue";
+import Products from "@/views/Products.vue";
+import ProductDetails from "@/views/ProductDetails.vue";
 import Cart from "@/views/Cart.vue";
-import Dashboard from "@/views/Admin/Dashboard.vue";
-import OneProduct from "@/views/Admin/OneProduct.vue";
-import UserDetails from "@/views/Admin/UserDetails.vue";
+import Dashboard from "@/views/Dashboard.vue";
+import OneProduct from "@/views/OneProduct.vue";
+import UserDetails from "@/views/UserDetails.vue";
 import LoginU from "@/views/LoginU.vue";
 import RegisterU from "@/views/RegisterU.vue";
 import Contact from "@/views/Contact.vue";
@@ -14,17 +13,11 @@ import NotFound from "@/views/NotFound.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
-  },
-
-  {
-    path: "/products",
     name: "Products",
     component: Products,
   },
   {
-    path: "/Products/:id",
+    path: "/:id",
     name: "ProductDetails",
     component: ProductDetails,
     props: true,
@@ -35,18 +28,18 @@ const routes = [
     component: Cart,
   },
   {
-    path: "/Admin/dashboard",
+    path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
   },
   {
-    path: "/Admin/:id",
+    path: "/:id",
     name: "OneProduct",
     component: OneProduct,
     props: true,
   },
   {
-    path: "/Admin/:id",
+    path: "/:id",
     name: "UserDetails",
     component: UserDetails,
     props: true,

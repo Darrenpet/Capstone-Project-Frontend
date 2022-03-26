@@ -1,87 +1,6 @@
 <template>
-  <div class="area"></div>
-  <nav class="main-menu">
-    <ul>
-      <li>
-        <router-link
-          class="nav-link active"
-          aria-current="page"
-          href="#!"
-          to="/"
-        >
-          <i class="fa fa-home fa-2x"></i>
-          <span class="nav-text"> Dashboard </span>
-        </router-link>
-      </li>
-
-      <li class="has-subnav">
-        <a href="#">
-          <i class="fa fa-laptop fa-2x"></i>
-          <span class="nav-text"> Stars Components </span>
-        </a>
-      </li>
-      <li class="has-subnav">
-        <a href="#">
-          <i class="fa fa-list fa-2x"></i>
-          <span class="nav-text"> Forms </span>
-        </a>
-      </li>
-      <li class="has-subnav">
-        <a href="#">
-          <i class="fa fa-folder-open fa-2x"></i>
-          <span class="nav-text"> Pages </span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-bar-chart-o fa-2x"></i>
-          <span class="nav-text"> Graphs and Statistics </span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-font fa-2x"></i>
-          <span class="nav-text"> Quotes </span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-table fa-2x"></i>
-          <span class="nav-text"> Tables </span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-map-marker fa-2x"></i>
-          <span class="nav-text"> Maps </span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-info fa-2x"></i>
-          <span class="nav-text"> Documentation </span>
-        </a>
-      </li>
-    </ul>
-
-    <ul class="logout">
-      <li>
-        <a href="#">
-          <i class="fa fa-power-off fa-2x"></i>
-          <span class="nav-text"> Logout </span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
+  <Navbar />
   <!-- Button trigger modal -->
-  <MDBBtn
-    color="danger"
-    aria-controls="exampleModal"
-    @click="exampleModal = true"
-  >
-    Create Product
-  </MDBBtn>
   <MDBModal
     id="exampleModal"
     tabindex="-1"
@@ -158,109 +77,71 @@
     </MDBModalBody>
     <MDBModalFooter>
       <MDBBtn color="secondary" @click="exampleModal = false">Close</MDBBtn>
-      <MDBBtn color="primary" @click="createProduct()">Create Product</MDBBtn>
+      <router-link
+        :to="{
+          name: 'Dashboard',
+        }"
+        ><MDBBtn color="primary" @click="createProduct()"
+          >Create Product</MDBBtn
+        ></router-link
+      >
     </MDBModalFooter>
   </MDBModal>
 
-  <!-- Button trigger modal -->
-  <MDBModal
-    id="exampleModal2"
-    tabindex="-1"
-    labelledby="exampleModalLabel2"
-    v-model="exampleModal2"
-  >
-    <MDBModalHeader>
-      <MDBModalTitle id="exampleModalLabel2"> Update Product </MDBModalTitle>
-    </MDBModalHeader>
-    <MDBModalBody>
-      <div class="mb-3">
-        <label for="addTitle" class="form-label">Title</label>
-        <input
-          class="form-control"
-          type="text"
-          name="addTitle"
-          id="addTitle"
-          v-model="title"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="" class="form-label">Category</label>
-        <select
-          class="form-select"
-          name="addCategory"
-          id="addCategory"
-          v-model="category"
-        >
+  <div class="d-flex justify-content-center mt-4">
+    <div class="sortBar mx-1">
+      <label>
+        Sort Price:
+        <select v-model="price" @change="sortPrice(price)">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </label>
+      <label>
+        Sort Name:
+        <select v-model="title" @change="sortTitle(title)">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </label>
+      <label>
+        Filter Category:
+        <select v-model="selected">
+          <option value="">All</option>
           <option value="Samsung">Samsung</option>
           <option value="Huawei">Huawei</option>
           <option value="Apple">Apple</option>
         </select>
-      </div>
-      <div class="mb-3">
-        <label for="addPrice" class="form-label">Price</label>
-        <input
-          class="form-control"
-          type="text"
-          name="addPrice"
-          id="addPrice"
-          v-model="price"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="addImg" class="form-label">Image Front URL</label>
-        <input
-          class="form-control"
-          type="text"
-          name="addImg"
-          id="addImg"
-          v-model="img_front"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="addImg" class="form-label">Image Back URL</label>
-        <input
-          class="form-control"
-          type="text"
-          name="addImg"
-          id="addImg"
-          v-model="img_back"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="addDescription" class="form-label">Description</label>
-        <input
-          class="form-control"
-          type="text"
-          name="addDescription"
-          id="addDescription"
-          v-model="description"
-        />
-      </div>
-    </MDBModalBody>
-    <MDBModalFooter>
-      <MDBBtn color="secondary" @click="exampleModal2 = false">Close</MDBBtn>
-      <MDBBtn color="primary" @click="updateProduct()">Update Product</MDBBtn>
-    </MDBModalFooter>
-  </MDBModal>
+      </label>
+    </div>
+    <input type="text" name="all" placeholder="Search" v-model="search" />
+  </div>
 
-  <div class="container">
-    <h1 class="text-center display-6 mb-5 fw-bold subtitlee">Products</h1>
-    <div
-      id="carouselExampleControlsNoTouching"
-      class="carousel testi slide text-black col-lg-10"
-      data-bs-touch="false"
-      data-bs-interval="false"
-    >
-      <div class="row text-center">
-        <div
-          class="carousel-inner text-dark border shadow-5-strong"
-          v-for="(product, index) in products"
-          :key="index"
+  <h1 class="fw-bold my-5">Products</h1>
+  <MDBBtn
+    class="mb-5"
+    color="danger"
+    aria-controls="exampleModal"
+    @click="exampleModal = true"
+  >
+    Create Product
+  </MDBBtn>
+  <div class="container border shadow-5-strong py-5">
+    <div v-if="products.length" class="row">
+      <div
+        v-for="product in filterProducts"
+        :key="product._id"
+        class="product col-xl-4 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"
+      >
+        <router-link
+          :to="{
+            name: 'OneProduct',
+            params: {
+              id: product._id,
+            },
+          }"
         >
-          <div
-            class="carousel-item mt-5 card"
-            :class="{ active: index == isActive }"
-          >
+          <h2 class="card text-white animate__animated animate__zoomIn">
             <img
               :src="product.img_front"
               class="d-block img-thumbnail"
@@ -271,82 +152,9 @@
               class="img-thumbnail img-top card-img"
               alt="..."
             />
-
-            <div class="text-center mt-5">
-              <p class="h5 names text-center mt-3">{{ product.title }}</p>
-              <b class="category">{{ product.category }}</b>
-              <div class=" ">
-                <p class="text-center mt-3">{{ product.description }}</p>
-                <p class="text-center mt-3">{{ product.price }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          @click="changePrevProducts"
-          data-bs-target="#carouselExampleControlsNoTouching"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          @click="changeNextProducts"
-          data-bs-target="#carouselExampleControlsNoTouching"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div v-if="products.length" class="row">
-      <div
-        v-for="product of products"
-        :key="product._id"
-        class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center"
-      >
-        <MDBCard text="danger" bg="dark" class="border shadow-5-strong my-5">
-          <a class="card" v-mdb-ripple="{ color: 'dark' }">
-            <MDBCardImg
-              :src="product.img_front"
-              class="card-img"
-              alt="Card Front"
-            />
-            <MDBCardImg
-              :src="product.img_back"
-              class="img-top card-img"
-              alt="Card Back"
-            />
-          </a>
-          <MDBCardBody>
-            <MDBCardTitle>{{ product.title }}</MDBCardTitle>
-            <MDBCardText> {{ product.category }} </MDBCardText>
-            <MDBCardText> {{ product.description }} </MDBCardText>
-            <MDBCardText> R{{ product.price }} </MDBCardText>
-            <MDBBtn
-              color="info"
-              aria-controls="exampleModal2"
-              @click="exampleModal2 = true"
-            >
-              Update Product
-            </MDBBtn>
-            <MDBBtn
-              tag="a"
-              href="#!"
-              color="danger"
-              @click.prevent="deleteProduct(product._id)"
-              >Delete</MDBBtn
-            >
-          </MDBCardBody>
-        </MDBCard>
+            {{ product.title }}
+          </h2>
+        </router-link>
       </div>
     </div>
     <div v-else>
@@ -365,39 +173,32 @@
     </div>
   </div>
 
-  <div class="container">
+  <h1 class="fw-bold my-5">Users</h1>
+  <input type="text" name="all" placeholder="Search Name" v-model="search1" />
+  <div class="container mt-5 border shadow-5-strong py-5">
     <div v-if="users.length" class="row">
       <div
-        v-for="user of users"
+        v-for="user of filterUsers"
         :key="user._id"
-        class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center"
+        class="product col-xl-4 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"
       >
-        <MDBCard text="danger" bg="dark" class="border shadow-5-strong my-5">
-          <a class="card" v-mdb-ripple="{ color: 'dark' }">
-            <MDBCardImg
+        <router-link
+          :to="{
+            name: 'UserDetails',
+            params: {
+              id: user._id,
+            },
+          }"
+        >
+          <h2 class="text-white animate__animated animate__zoomIn">
+            <img
               src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
-              class="card-img"
-              alt="Card Front"
+              class="d-block img-thumbnail"
+              alt="..."
             />
-          </a>
-          <MDBCardBody>
-            <MDBCardTitle>{{ user.name }}</MDBCardTitle>
-            <MDBCardText> {{ user.email }} </MDBCardText>
-            <MDBCardText> {{ user.phone_number }} </MDBCardText>
-            <!-- <router-link
-            :to="{
-              name: 'ProductDetails',
-              params: {
-                id: user._id,
-              },
-            }"
-            ><MDBBtn tag="a" href="#!" color="info"
-              >View Product</MDBBtn
-            ></router-link
-          > -->
-            <MDBBtn tag="a" href="#!" color="success">Button</MDBBtn>
-          </MDBCardBody>
-        </MDBCard>
+            {{ user.name }}
+          </h2>
+        </router-link>
       </div>
     </div>
     <div v-else>
@@ -415,10 +216,12 @@
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script>
-import axios from "axios";
+import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
 import {
   MDBCard,
   MDBCardBody,
@@ -451,15 +254,21 @@ export default {
     MDBModalTitle,
     MDBModalBody,
     MDBModalFooter,
+    Navbar,
+    Footer,
   },
 
   directives: {
     mdbRipple,
   },
+  props: ["id"],
   data() {
     return {
       products: [],
       users: [],
+      selected: "",
+      search: "",
+      search1: "",
       title: "",
       category: "",
       description: "",
@@ -472,111 +281,9 @@ export default {
 
   setup() {
     const exampleModal = ref(false);
-    const exampleModal2 = ref(false);
     return {
       exampleModal,
-      exampleModal2,
     };
-  },
-
-  methods: {
-    changeNextProducts() {
-      if (this.isActive < 19) this.isActive++;
-      else this.isActive = 0;
-    },
-    changePrevProducts() {
-      if (this.isActive < 20) {
-        this.isActive--;
-      }
-      if (this.isActive < 0) {
-        this.isActive = 19;
-      }
-    },
-
-    // Create Product
-    createProduct() {
-      if (!localStorage.getItem("jwt")) {
-        alert("User not logged in");
-        return this.$router.push({ name: "Login" });
-      }
-      fetch("https://capstone-bkend.herokuapp.com/products/", {
-        method: "POST",
-        body: JSON.stringify({
-          title: this.title,
-          description: this.description,
-          category: this.category,
-          price: this.price,
-          img_front: this.img_front,
-          img_back: this.img_back,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          alert("Product Created");
-          // this.$router.push({ name: "Products" });
-        })
-        .catch((err) => {
-          alert(err);
-        });
-    },
-
-    // Update Product
-    updateProduct() {
-      if (!localStorage.getItem("jwt")) {
-        alert("User not logged in");
-        return this.$router.push({ name: "Login" });
-      }
-      fetch("https://capstone-bkend.herokuapp.com/products/" + this._id, {
-        method: "PUT",
-        body: JSON.stringify({
-          title: this.title,
-          description: this.description,
-          category: this.category,
-          price: this.price,
-          img_front: this.img_front,
-          img_back: this.img_back,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          alert("Product Updated");
-          // this.$router.push({ name: "Products" });
-        })
-        .catch((err) => {
-          alert(err);
-        });
-    },
-
-    deleteProduct(id) {
-      const config = {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      };
-      let apiURL = `https://capstone-bkend.herokuapp.com/products//${id}`;
-
-      let indexOfArrayItem = this.products.findIndex((i) => i._id === id);
-
-      if (window.confirm("Do you really want to delete?")) {
-        axios
-          .delete(apiURL, config)
-          .then(() => {
-            this.products.splice(indexOfArrayItem, 1);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    },
   },
 
   mounted() {
@@ -601,6 +308,96 @@ export default {
           this.users = json;
         });
   },
+
+  computed: {
+    filterProducts: function () {
+      if (this.selected == "") {
+        this.products = this.products.filter((product) => {
+          return product.category
+            .toLowerCase()
+            .match(this.selected.toLowerCase());
+        });
+        if (this.search) {
+          this.products = this.products.filter((product) => {
+            return product.title.toLowerCase().match(this.search.toLowerCase());
+          });
+        }
+        return this.products;
+      }
+      if (this.selected) {
+        this.products = this.products.filter((product) => {
+          return product.category
+            .toLowerCase()
+            .match(this.selected.toLowerCase());
+        });
+        if (this.search) {
+          this.products = this.products.filter((product) => {
+            return product.title.toLowerCase().match(this.search.toLowerCase());
+          });
+        }
+        return this.products;
+      }
+    },
+
+    filterUsers: function () {
+      return this.users.filter((user) => {
+        return user.name.toLowerCase().match(this.search1.toLowerCase());
+      });
+    },
+  },
+
+  methods: {
+    // Create Product
+    createProduct() {
+      if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "LoginU" });
+      }
+      fetch("https://capstone-bkend.herokuapp.com/products/", {
+        method: "POST",
+        body: JSON.stringify({
+          title: this.title,
+          description: this.description,
+          category: this.category,
+          price: this.price,
+          img_front: this.img_front,
+          img_back: this.img_back,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          location.reload();
+          alert("Product Created");
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    },
+
+    sortPrice(price) {
+      this.filterProducts = this.filterProducts.sort(
+        (a, b) => a.price - b.price
+      );
+      if (price == "desc") this.filterProducts.reverse();
+    },
+
+    sortTitle(title) {
+      this.filterProducts = this.filterProducts.sort((a, b) => {
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
+          return -1;
+        }
+        if (a.title.toLowerCase() > b.title.toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      });
+      if (title == "desc") this.filterProducts.reverse();
+    },
+  },
 };
 </script>
 
@@ -608,6 +405,7 @@ export default {
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
 .fa-2x {
   font-size: 2em;
 }
@@ -749,11 +547,30 @@ nav.main-menu li.active > a,
       format("woff");
 }
 
+.product h2 {
+  background: #000000;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px auto;
+  min-width: 350px;
+  max-height: 300px;
+  cursor: pointer;
+  color: #444;
+}
+
+.product h2:hover {
+  background: rgb(255, 0, 0);
+}
+
+.product a {
+  text-decoration: none;
+}
+
 .card .img-top {
   display: none;
   position: absolute;
-  top: 0;
-  left: 50px;
+  top: 20px;
+  left: 75px;
   z-index: 99;
 }
 
@@ -772,41 +589,5 @@ nav.main-menu li.active > a,
   margin: auto;
   width: 200px;
   object-fit: cover;
-}
-
-.carousel-item {
-  background-color: rgb(226, 226, 226);
-  border-radius: 15px;
-  height: 500px;
-}
-.carousel-control-prev-icon {
-  background-color: rgb(255, 0, 0);
-  margin-bottom: 230px;
-}
-.carousel-control-prev {
-  opacity: 0.3 !important;
-}
-.carousel-control-next {
-  opacity: 0.3 !important;
-}
-.carousel-control-next-icon {
-  background-color: rgb(255, 0, 0);
-  margin-bottom: 230px;
-}
-.category {
-  color: rgb(255, 0, 0);
-  font-size: x-large;
-}
-.names {
-  font-size: xx-large;
-}
-.carousel-control-next-icon:hover {
-  background-color: white;
-}
-.carousel-control-prev-icon:hover {
-  background-color: white;
-}
-.description {
-  width: 700px !important;
 }
 </style>

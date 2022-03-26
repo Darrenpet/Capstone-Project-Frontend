@@ -1,28 +1,14 @@
 <template>
   <MDBNavbar id="nav" expand="lg" dark bg="dark" position="top" container-fluid>
-    <MDBNavbarBrand class="a" href="#" fw-bold>Darren Petersen</MDBNavbarBrand>
+    <MDBNavbarBrand class="a" href="#" fw-bold>Be Mobile</MDBNavbarBrand>
     <MDBNavbarToggler
       @click="collapse1 = !collapse1"
       target="#navbarSupportedContent"
     ></MDBNavbarToggler>
     <MDBCollapse v-model="collapse1" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
-        <li class="nav-item text-center mx-2 mx-lg-1">
+        <li class="nav-item text-center mx-3 mx-lg-1">
           <MDBNavbarNav class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
-            <MDBNavbarItem>
-              <router-link
-                class="nav-link active"
-                aria-current="page"
-                href="#!"
-                to="/"
-              >
-                <div>
-                  <i class="fas fa-home fa-lg mb-1"></i>
-                </div>
-                Home
-              </router-link>
-            </MDBNavbarItem>
-
             <MDBNavbarItem>
               <router-link
                 class="nav-link"
@@ -33,6 +19,19 @@
                   <i class="fas fa-laptop"></i>
                 </div>
                 Products
+              </router-link>
+            </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <router-link
+                class="nav-link"
+                href="#!"
+                :to="{ name: 'Dashboard' }"
+              >
+                <div>
+                  <i class="fas fa-laptop"></i>
+                </div>
+                Dashboard
               </router-link>
             </MDBNavbarItem>
 

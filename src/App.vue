@@ -17,8 +17,8 @@ export default {
   text-align: center;
   color: #ff0000;
   background-color: rgb(226, 226, 226);
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 200px;
+  padding-bottom: 150px;
 }
 
 #nav {
@@ -32,11 +32,5 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #ff0000;
-}
-
-html {
-  background-color: black;
-  padding-top: 100px;
-  padding-bottom: 100px;
 }
 </style>
