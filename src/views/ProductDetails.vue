@@ -1,5 +1,4 @@
 <template>
-  <Navbar />
   <h1 class="fw-bold my-5">Product Details</h1>
   <MDBBtn
     color="black"
@@ -39,7 +38,7 @@
               class="btn2"
               @click="addToCart(product._id)"
             >
-              <i class="fas fa-cart-plus"> Add to Cart</i>
+              <i class="fas fa-cart-plus"> </i> Add to Cart
             </MDBBtn>
           </div>
         </div>
@@ -60,12 +59,9 @@
       </div>
     </div>
   </div>
-  <Footer />
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
 import {
   MDBModal,
   MDBModalHeader,
@@ -83,8 +79,6 @@ export default {
     MDBModalBody,
     MDBModalFooter,
     MDBBtn,
-    Navbar,
-    Footer,
   },
   data() {
     return {

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Home from "@/views/Home.vue";
 import Products from "@/views/Products.vue";
 import ProductDetails from "@/views/ProductDetails.vue";
 import Cart from "@/views/Cart.vue";
@@ -13,11 +14,16 @@ import NotFound from "@/views/NotFound.vue";
 const routes = [
   {
     path: "/",
+    name: "Home",
+    component: Home,
+  },
+  {
+    path: "/products",
     name: "Products",
     component: Products,
   },
   {
-    path: "/:id",
+    path: "/products/:id",
     name: "ProductDetails",
     component: ProductDetails,
     props: true,
@@ -33,13 +39,13 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/:id",
+    path: "/dashboard/:id",
     name: "OneProduct",
     component: OneProduct,
     props: true,
   },
   {
-    path: "/:id",
+    path: "/dashboard/:id",
     name: "UserDetails",
     component: UserDetails,
     props: true,

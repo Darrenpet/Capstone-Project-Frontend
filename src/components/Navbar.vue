@@ -1,35 +1,38 @@
 <template>
   <MDBNavbar id="nav" expand="lg" dark bg="dark" position="top" container-fluid>
-    <MDBNavbarBrand class="a" href="#" fw-bold>Be Mobile</MDBNavbarBrand>
+    <MDBNavbarBrand class="a" href="#" fw-bold
+      ><i class="fa-solid fa-mobile-notch">Be Mobile</i></MDBNavbarBrand
+    >
     <MDBNavbarToggler
       @click="collapse1 = !collapse1"
       target="#navbarSupportedContent"
     ></MDBNavbarToggler>
     <MDBCollapse v-model="collapse1" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+      <ul class="navbar-nav ms-auto d-flex flex-row mt-1 mt-lg-0">
         <li class="nav-item text-center mx-3 mx-lg-1">
           <MDBNavbarNav class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
             <MDBNavbarItem>
-              <router-link
-                class="nav-link"
-                href="#!"
-                :to="{ name: 'Products' }"
-              >
+              <router-link class="nav-link" href="#!" :to="{ name: 'Home' }">
                 <div>
-                  <i class="fas fa-laptop"></i>
+                  <i class="fas fa-home"></i>
+                </div>
+                Home
+              </router-link>
+            </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <router-link class="nav-link" :to="{ name: 'Products' }">
+                <div>
+                  <i class="fa-solid fa-laptop"></i>
                 </div>
                 Products
               </router-link>
             </MDBNavbarItem>
 
             <MDBNavbarItem>
-              <router-link
-                class="nav-link"
-                href="#!"
-                :to="{ name: 'Dashboard' }"
-              >
+              <router-link class="nav-link" :to="{ name: 'Dashboard' }">
                 <div>
-                  <i class="fas fa-laptop"></i>
+                  <i class="fa-solid fa-gauge"></i>
                 </div>
                 Dashboard
               </router-link>
@@ -38,7 +41,7 @@
             <MDBNavbarItem>
               <router-link class="nav-link" href="#!" :to="{ name: 'LoginU' }">
                 <div>
-                  <i class="fas fa-laptop"></i>
+                  <i class="fa-solid fa-right-to-bracket"></i>
                 </div>
                 Login
               </router-link>
@@ -46,13 +49,12 @@
 
             <MDBNavbarItem>
               <router-link
-                @click="logout()"
                 class="nav-link"
-                href="#!"
-                :to="{ name: 'LoginU' }"
+                :to="{ name: 'Home' }"
+                @click="logout()"
               >
                 <div>
-                  <i class="fas fa-laptop"></i>
+                  <i class="fa-solid fa-right-from-bracket"></i>
                 </div>
                 Logout
               </router-link>
@@ -65,7 +67,7 @@
                 :to="{ name: 'RegisterU' }"
               >
                 <div>
-                  <i class="fas fa-laptop"></i>
+                  <i class="fa-solid fa-id-card"></i>
                 </div>
                 Register
               </router-link>
@@ -94,7 +96,6 @@
     </MDBCollapse>
   </MDBNavbar>
 </template>
-<button class="btn btn-danger" @click="logout()">Logout</button>
 <script>
 import {
   MDBBtn,
@@ -132,7 +133,7 @@ export default {
       dropdown1,
     };
   },
-  computed: {
+  methods: {
     logout() {
       localStorage.clear();
       alert("User logged out");
@@ -145,9 +146,7 @@ export default {
   padding: 0.55rem 1.5rem 0.45rem;
 }
 
-#nav .a {
-  font-weight: bold;
-  color: white;
+#nav a {
   text-decoration: none;
   border-radius: 4px;
 }

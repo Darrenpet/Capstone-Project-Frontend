@@ -1,11 +1,18 @@
 <template>
+  <Navbar />
   <router-view />
+  <Footer />
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue";
+import Footer from "./components/Footer.vue";
 export default {
   name: "App",
-  components: {},
+  components: {
+    Navbar,
+    Footer,
+  },
 };
 </script>
 
@@ -22,12 +29,13 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+  padding: 10px;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  margin-left: 5px;
 }
 
 #nav a.router-link-exact-active {

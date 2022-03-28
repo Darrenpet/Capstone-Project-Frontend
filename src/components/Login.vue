@@ -8,7 +8,7 @@
         <!--   Login   -->
         <div class="login justify-content-center" id="login-form">
           <h1 class="form-title">
-            <i class="fas fa-user" style="color: #0000ff"></i> <br />
+            <i class="fa-solid fa-user-check"></i>
             LOGIN
             <hr />
           </h1>
@@ -214,12 +214,12 @@ input::placeholder {
 
 .submit-buttons input:nth-of-type(1) {
   border-radius: 5px 0 0 5px;
-  background: #54a0ff;
+  background: #ff1212;
 }
 
 .submit-buttons input:nth-of-type(2) {
   border-radius: 0 5px 5px 0;
-  background: #c8d6e5;
+  background: #a9aaaa;
 }
 
 @media (max-width: 933px) {

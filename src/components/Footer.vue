@@ -30,12 +30,7 @@
           href="https://app.netlify.com/teams/darrenpet/overview"
           role="button"
           target="_blank"
-          ><i
-            ><span
-              class="iconify mx-2"
-              data-icon="simple-icons:netlify"
-              style="font-size: 20px"
-            ></span></i
+          ><span class="iconify-inline" data-icon="logos:netlify"></span
         ></a>
       </section>
       <!-- Section: Social media -->

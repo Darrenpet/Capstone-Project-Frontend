@@ -1,5 +1,4 @@
 <template>
-  <Navbar />
   <div class="container">
     <div class="content">
       <div
@@ -9,7 +8,7 @@
         <!--   Login   -->
         <div class="contact justify-content-center" id="contact-form">
           <h1 class="form-title">
-            <i class="fas fa-user" style="color: #0000ff"></i> <br />
+            <i class="fa-solid fa-address-book"></i>
             CONTACT
             <hr />
           </h1>
@@ -19,7 +18,7 @@
             style="animation-delay: 0.7s"
           >
             <form @submit.prevent="handleSubmit()">
-              <label for="name"><i class="fas fa-at"></i> Name </label>
+              <label for="name"><i class="fab fa-slack-hash"></i> Name </label>
               <input
                 type="text"
                 name="name"
@@ -35,7 +34,9 @@
                 placeholder="Email"
               />
 
-              <label for="message"><i class="fas fa-at"></i> Message</label>
+              <label for="message"
+                ><i class="fab fa-slack-hash"></i> Message</label
+              >
               <input
                 class="textarea"
                 type="textarea"
@@ -60,17 +61,11 @@
       </div>
     </div>
   </div>
-  <Footer />
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
 export default {
-  components: {
-    Navbar,
-    Footer,
-  },
+  components: {},
   data() {
     return {
       name: "",
@@ -119,7 +114,7 @@ export default {
   transition: 0.4s;
 }
 
-.login {
+.contact {
   transition: 0.4s;
   font-family: Comfortaa;
 }
@@ -143,6 +138,18 @@ export default {
   float: right;
   border-radius: 0 5px 5px 0;
 }
+/* 
+.contact {
+  width: 50%;
+  display: block;
+  padding: 15px;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: 0.4s;
+  font-family: Comfortaa;
+  display: none;
+} */
 
 .form-title {
   position: absolute;
@@ -216,37 +223,26 @@ input::placeholder {
 
 .submit-buttons input:nth-of-type(1) {
   border-radius: 5px 0 0 5px;
-  background: #54a0ff;
+  background: #ff1212;
 }
 
 .submit-buttons input:nth-of-type(2) {
   border-radius: 0 5px 5px 0;
-  background: #c8d6e5;
+  background: #a9aaaa;
 }
 
 @media (max-width: 933px) {
-  .login#login-bg {
+  .contact#contact-bg {
     width: 0;
   }
 
-  .login#login-form,
+  .contact#contact-form,
   .register {
     width: 100%;
   }
 
   input {
     width: 100%;
-  }
-
-  .textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
   }
 }
 </style>

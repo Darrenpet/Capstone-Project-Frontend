@@ -8,7 +8,7 @@
         <!--   Login   -->
         <div class="register justify-content-center" id="register-form">
           <h1 class="form-title">
-            <i class="fas fa-user" style="color: #0000ff"></i> <br />
+            <i class="fa-solid fa-user-plus"></i>
             REGISTER
             <hr />
           </h1>
@@ -18,7 +18,7 @@
             style="animation-delay: 0.7s"
           >
             <form @submit.prevent="register()">
-              <label for=""><i class="fas fa-at"></i> Name </label>
+              <label for="name"><i class="fab fa-slack-hash"></i> Name </label>
               <input
                 type="text"
                 name="name"
@@ -26,7 +26,9 @@
                 placeholder="Name"
               />
 
-              <label for=""><i class="fas fa-at"></i> Phone Number </label>
+              <label for="phone_number"
+                ><i class="fab fa-slack-hash"></i> Phone Number
+              </label>
               <input
                 type="text"
                 name="phone_number"
@@ -34,7 +36,7 @@
                 placeholder="Contact"
               />
 
-              <label for=""><i class="fas fa-at"></i> Email </label>
+              <label for="email"><i class="fas fa-at"></i> Email </label>
               <input
                 type="email"
                 name="email"
@@ -42,7 +44,9 @@
                 placeholder="Email"
               />
 
-              <label for=""><i class="fab fa-slack-hash"></i> Password </label>
+              <label for="password"
+                ><i class="fab fa-slack-hash"></i> Password
+              </label>
               <input
                 type="password"
                 name="password"
@@ -79,9 +83,12 @@
 <script>
 export default {
   data() {
-    return;
-    {
-    }
+    return {
+      name: "",
+      phone_number: "",
+      email: "",
+      password: "",
+    };
   },
   methods: {
     register() {
@@ -151,18 +158,6 @@ export default {
   background-position: center center;
   float: right;
   border-radius: 0 5px 5px 0;
-}
-
-.register {
-  width: 50%;
-  display: block;
-  padding: 15px;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  transition: 0.4s;
-  font-family: Comfortaa;
-  display: none;
 }
 
 .form-title {
@@ -241,20 +236,20 @@ input::placeholder {
 
 .submit-buttons input:nth-of-type(1) {
   border-radius: 5px 0 0 5px;
-  background: #54a0ff;
+  background: #ff1212;
 }
 
 .submit-buttons input:nth-of-type(2) {
   border-radius: 0 5px 5px 0;
-  background: #c8d6e5;
+  background: #a9aaaa;
 }
 
 @media (max-width: 933px) {
-  .login#login-bg {
+  .register#register-bg {
     width: 0;
   }
 
-  .login#login-form,
+  .register#register-form,
   .register {
     width: 100%;
   }

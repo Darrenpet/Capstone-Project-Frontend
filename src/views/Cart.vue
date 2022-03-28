@@ -1,6 +1,4 @@
 <template>
-  <Navbar />
-
   <div class="container mt-5 pt-4">
     <div id="cart"></div>
     <div
@@ -8,17 +6,11 @@
       class="d-flex justify-content-between align-items-center mb-3 text-white"
     ></div>
   </div>
-  <Footer />
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
 export default {
-  components: {
-    Navbar,
-    Footer,
-  },
+  components: {},
   mounted() {
     const cart = JSON.parse(localStorage.getItem("cart"))
       ? JSON.parse(localStorage.getItem("cart"))
@@ -32,7 +24,7 @@ export default {
 
       let total = cart
         .reduce((total, product) => {
-          return total + product.price * product.qty;
+          return total + product.price * product.quantity;
         }, 0)
         .toFixed(2);
 
@@ -54,13 +46,13 @@ export default {
               <div class="d-flex mb-3 justify-content-between">
                 <label class="form-label">Quantity:</label>
                 <input type="number" min=1 id="remove${position}" value=${
-          product.qty
+          product.quantity
         } onchange="updateCart(${position})" />
               </div>
               <div class="card-footer bg-white d-flex justify-content-between  p-0 pt-3">
                 <p>Total Cost: </p>
                 <span>R${(
-                  parseFloat(product.price) * parseInt(product.qty)
+                  parseFloat(product.price) * parseInt(product.quantity)
                 ).toFixed(2)}</span>
               </div>
             </div>
@@ -86,8 +78,8 @@ export default {
 
     // UPDATE
     updateCart(position) {
-      let qty = document.querySelector(`#remove${position}`).value;
-      cart[position] = { ...cart[position], qty };
+      let quantity = document.querySelector(`#remove${position}`).value;
+      cart[position] = { ...cart[position], quantity };
       localStorage.setItem("cart", JSON.stringify(cart));
     },
 
@@ -107,7 +99,7 @@ export default {
     checkout() {
       let total = cart
         .reduce((total, product) => {
-          return total + product.Price * product.qty;
+          return total + product.price * product.quantity;
         }, 0)
         .toFixed(2);
       try {

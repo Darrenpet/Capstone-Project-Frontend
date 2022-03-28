@@ -1,5 +1,4 @@
 <template>
-  <Navbar />
   <section class="products">
     <div class="container my-5">
       <div class="row my-5">
@@ -12,11 +11,11 @@
             movable sector that serves numerous customers through our retail,
             wholesale and online activities. For retail customers Be Mobile has
             become a saw for mobiles, parts, accessories, services, and repairs
-            through our four shops in la, New York, London. Currently
-            established for over a decade, we have a tendency to extend into
-            wholesale offer and distribution concerning four years past and have
-            conjointly developed refined, easy websites to sell mobiles, parts,
-            repair services, and accessories to new customers everyplace. Be
+            through our four shops in CT, South Africa. Currently established
+            for over a decade, we have a tendency to extend into wholesale offer
+            and distribution concerning four years past and have conjointly
+            developed refined, easy websites to sell mobiles, parts, repair
+            services, and accessories to new customers everyplace. Be
           </p>
           <p class="text-start text-black">
             Mobile's success thus far has primarily been designed on our
@@ -115,12 +114,9 @@
       </div>
     </div>
   </div>
-  <Footer />
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
 import Carousel from "@/components/Carousel.vue";
 import {
   MDBCard,
@@ -145,8 +141,6 @@ export default {
     MDBCardGroup,
     MDBCardGroupItem,
     Carousel,
-    Navbar,
-    Footer,
   },
 
   directives: {
@@ -232,8 +226,8 @@ export default {
         return this.products(products);
       }
 
-      this.products = products.filter((product) => {
-        return product.category
+      this.products = products.filter((products) => {
+        return products.category
           .toLowerCase()
           .match(this.selected.toLowerCase());
       });
@@ -289,5 +283,93 @@ export default {
   margin: auto;
   width: 200px;
   object-fit: cover;
+}
+
+.fingerprint-spinner,
+.fingerprint-spinner * {
+  box-sizing: border-box;
+}
+
+.fingerprint-spinner {
+  height: 64px;
+  width: 64px;
+  padding: 2px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.fingerprint-spinner .spinner-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #ff0000;
+  animation: fingerprint-spinner-animation 1500ms
+    cubic-bezier(0.68, -0.75, 0.265, 1.75) infinite forwards;
+  margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(1) {
+  height: calc(60px / 9 + 0 * 60px / 9);
+  width: calc(60px / 9 + 0 * 60px / 9);
+  animation-delay: calc(50ms * 1);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(2) {
+  height: calc(60px / 9 + 1 * 60px / 9);
+  width: calc(60px / 9 + 1 * 60px / 9);
+  animation-delay: calc(50ms * 2);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(3) {
+  height: calc(60px / 9 + 2 * 60px / 9);
+  width: calc(60px / 9 + 2 * 60px / 9);
+  animation-delay: calc(50ms * 3);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(4) {
+  height: calc(60px / 9 + 3 * 60px / 9);
+  width: calc(60px / 9 + 3 * 60px / 9);
+  animation-delay: calc(50ms * 4);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(5) {
+  height: calc(60px / 9 + 4 * 60px / 9);
+  width: calc(60px / 9 + 4 * 60px / 9);
+  animation-delay: calc(50ms * 5);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(6) {
+  height: calc(60px / 9 + 5 * 60px / 9);
+  width: calc(60px / 9 + 5 * 60px / 9);
+  animation-delay: calc(50ms * 6);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(7) {
+  height: calc(60px / 9 + 6 * 60px / 9);
+  width: calc(60px / 9 + 6 * 60px / 9);
+  animation-delay: calc(50ms * 7);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(8) {
+  height: calc(60px / 9 + 7 * 60px / 9);
+  width: calc(60px / 9 + 7 * 60px / 9);
+  animation-delay: calc(50ms * 8);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(9) {
+  height: calc(60px / 9 + 8 * 60px / 9);
+  width: calc(60px / 9 + 8 * 60px / 9);
+  animation-delay: calc(50ms * 9);
+}
+
+@keyframes fingerprint-spinner-animation {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
